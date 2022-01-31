@@ -23,4 +23,4 @@ if data["pattern"][4] == -100:
 
 ## Automated Profit-Tracking
 
-More on this coming soon.
+I originally wrote this for another trading bot and haven't translated it for this one, so some of the code might references data that isn't specific to this program. It can be easily translated, though. The corresponding file in the repository will be `profits.py`.
