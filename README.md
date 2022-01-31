@@ -30,3 +30,12 @@ I originally wrote this for another trading bot and haven't translated it for th
 When you call the `updateCSV()` function at a certain time (probably after market close every day), it will read the associated Alpaca account and calculate the percent change (performance of the bot). It then uses Yahoo Finance to find out how much SPY changed. It then appends (or creates if nonexistent) a `Profit Tracker.csv` file located in the `Data/` subdirectory. It calculates an `alpha` for the day, defined as `botPerformance - spyChange`. 
 
 It has a deprecated function for graphing, too. It graphs a notional account with $10,000, daily profits, outperformance of SPY by dollar, relative profit, and alpha. All of this data comes from the `Data/'Profit Tracker.csv` which updates itself every day.
+
+The end of `profits.py` has an `sftpDroplet()` function that can be used to send updated `Profit Tracker.csv` files to any location (assuming the bot is run on a remote virtual machine).
+
+```python
+def sendUpdatedProfits():
+    with pysftp.Connection(host = 'RECIPIENTHOSTIP', username = 'USERNAME', password = 'PWD') as sftp:
+        with sftp.cd('locationOfLocalProjectFiles/Data'):
+            sftp.put('Data/Profit Tracker.csv')
+```
